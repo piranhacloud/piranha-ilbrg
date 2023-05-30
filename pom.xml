@@ -8,6 +8,13 @@
     <packaging>pom</packaging>
     <name>Piranha Smart - Project</name>
     <modules>
-        <module>webapp</module>
+        <module>admin</module>
     </modules>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jakartaee.version>10.0.0</jakartaee.version>
+        <java.version>17</java.version>
+        <maven-compiler-plugin-version>3.11.0</maven-compiler-plugin-version>
+        <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+    </properties>
 </project>
