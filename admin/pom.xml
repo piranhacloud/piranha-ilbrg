@@ -7,7 +7,7 @@
         <groupId>cloud.piranha.smart</groupId>
         <version>23.5.0-SNAPSHOT</version>
     </parent>
-    <artifactId>webapp</artifactId>
+    <artifactId>smart-admin</artifactId>
     <packaging>war</packaging>
     <name>Piranha Smart - Admin</name>
     <dependencies>
