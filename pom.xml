@@ -9,6 +9,7 @@
     <name>Piranha Smart - Project</name>
     <modules>
         <module>admin</module>
+        <module>webapp</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
