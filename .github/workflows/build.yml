@@ -23,22 +23,4 @@ jobs:
         distribution: 'temurin'
         java-version: 17
     - name: Build with Maven
-      run: mvn -B -Dmaven.javadoc.skip=true -DskipTests=true -DskipITs=true -ntp -P '!test' verify
-    - name: Login to GHCR
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v2
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-      with:
-        version: v0.10.0
-    - run: docker buildx inspect
-    - name: Build Piranha Smart Admin image
-      run: |
-        mvn -B -Dmaven.javadoc.skip=true -DskipTests=true -DskipITs=true -ntp -P '!test' install
-        cd admin
-        mvn -B -DskipTests=true -DskipITs=true -ntp -P docker deploy
+      run: mvn -B -ntp verify
