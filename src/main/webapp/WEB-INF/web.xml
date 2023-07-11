@@ -4,8 +4,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <filter>
-        <filter-name>DefaultFilter</filter-name>
-        <filter-class>cloud.piranha.smart.webapp.DefaultFilter</filter-class>
+        <filter-name>SmartFilter</filter-name>
+        <filter-class>cloud.piranha.smart.webapp.SmartFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>DefaultFilter</filter-name>
