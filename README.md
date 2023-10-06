@@ -10,3 +10,7 @@ application router, a rate limiter, or a circuit breaker.
 
 The core of Manorrock Spider is the SmartFilter that reads a configuration file 
 that allows you to customize what Manorrock Spider does with a request.
+
+## How do I contribute?
+
+See [Contributing](CONTRIBUTING.md)
