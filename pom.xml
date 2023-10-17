@@ -8,11 +8,19 @@
     <packaging>war</packaging>
     <name>Manorrock Spider</name>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- dependencies -->
         <jakartaee.version>10.0.0</jakartaee.version>
+        <junit.version>5.6.0</junit.version>
+        <piranha.version>23.7.0</piranha.version>
+        <!-- other -->
         <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- plugins -->
+        <docker-maven-plugin.version>0.43.0</docker-maven-plugin.version>
         <maven-compiler-plugin-version>3.11.0</maven-compiler-plugin-version>
+        <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -24,25 +32,25 @@
         <dependency>
             <groupId>cloud.piranha</groupId>
             <artifactId>piranha-embedded</artifactId>
-            <version>23.7.0</version>
+            <version>${piranha.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.6.0</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>5.6.0</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.6.0</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -75,7 +83,7 @@
                     <plugin>
                         <groupId>io.fabric8</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.43.0</version>
+                        <version>${docker-maven-plugin.version}</version>
                         <configuration>
                             <images>
                                 <image>
@@ -115,7 +123,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.5.0</version>
+                        <version>${maven-javadoc-plugin.version}</version>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
@@ -123,7 +131,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.13</version>
+                        <version>${nexus-staging-maven-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
                             <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
