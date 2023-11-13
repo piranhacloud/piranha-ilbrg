@@ -87,8 +87,8 @@
                         <configuration>
                             <images>
                                 <image>
-                                    <alias>coreprofile</alias>
-                                    <name>manorrock/spider:%l</name>
+                                    <alias>spider</alias>
+                                    <name>ghcr.io/manorrock/spider:%l</name>
                                     <build>
                                         <buildx>
                                             <platforms>
