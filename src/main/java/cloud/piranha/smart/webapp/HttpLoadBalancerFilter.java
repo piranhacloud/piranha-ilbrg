@@ -29,26 +29,71 @@ package cloud.piranha.smart.webapp;
 
 import java.io.IOException;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * A filter that load balances requests.
+ * A filter that load balances HTTP requests.
  *
  * @author Manfred Riem (mriem@manorrock.com)
  */
-public class LoadBalancerFilter extends HttpFilter {
+public class HttpLoadBalancerFilter extends HttpFilter {
+
+    /**
+     * Stores the index.
+     */
+    private int serverIndex = 0;
+
+    /**
+     * Stores the downstream servers.
+     */
+    private final List<String> serverList = new ArrayList<>();
 
     @Override
-    protected void doFilter(HttpServletRequest request,
-            HttpServletResponse response, FilterChain chain) throws IOException,
-            ServletException {
-        
-        if (!response.isCommitted()) {
-            response.setStatus(429);
-            response.flushBuffer();
+    public void destroy() {
+        serverList.clear();
+    }
+
+    @Override
+    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+        String server = getNextServer();
+        URL url = new URL(server + request.getRequestURI());
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.connect();
+        InputStream inputStream = connection.getInputStream();
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                response.getWriter().write(line);
+            }
         }
+    }
+
+    @Override
+    public void init(FilterConfig config) throws ServletException {
+        String param = config.getInitParameter("servers");
+        String[] servers = param.split(",");
+        if (servers.length > 0) {
+            serverList.addAll(Arrays.asList(servers));
+        }
+    }
+
+    private String getNextServer() {
+        if (serverIndex >= serverList.size()) {
+            serverIndex = 0;
+        }
+        return serverList.get(serverIndex++);
     }
 }
