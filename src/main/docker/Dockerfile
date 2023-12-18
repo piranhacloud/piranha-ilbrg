@@ -1,4 +1,4 @@
-FROM ghcr.io/piranhacloud/webprofile:23.10.0
+FROM ghcr.io/piranhacloud/webprofile:23.12.0
 USER root
 ADD target/spider.war /home/piranha
 WORKDIR /home/piranha
