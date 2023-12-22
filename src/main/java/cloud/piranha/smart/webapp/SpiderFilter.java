@@ -36,12 +36,12 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 
 /**
- * The SmartFilter.
+ * The SpiderFilter.
  *
  * @author Manfred Riem (mriem@manorrock.com)
  */
 @WebFilter(asyncSupported = true,
         dispatcherTypes = {ASYNC, ERROR, FORWARD, INCLUDE, REQUEST},
         urlPatterns = {"/*"})
-public class SmartFilter extends HttpFilter {
+public class SpiderFilter extends HttpFilter {
 }
