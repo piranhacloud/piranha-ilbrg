@@ -11,6 +11,15 @@ application router, a rate limiter, or a circuit breaker.
 The core of Manorrock Spider is the SmartFilter that reads a configuration file 
 that allows you to customize what Manorrock Spider does with a request.
 
+## Running using the container image from GHCR
+
+In an EMPTY directory of your choice use the following command line to start 
+Manorrock Persian:
+
+```shell
+  docker run --rm -d -it -p 8080:8080 -v $PWD:/mnt ghcr.io/manorrock/spider
+```
+
 ## How do I contribute?
 
 See [Contributing](CONTRIBUTING.md)
